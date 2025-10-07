@@ -52,6 +52,7 @@ public:
         else
         {
             n--;
+            i++;
             return false;
         }
     }
