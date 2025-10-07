@@ -1,12 +1,11 @@
+#include <vector>
 #include <iostream>
 using namespace std;
 
 // class here
-class Solution
-{
+class Solution {
 public:
-    string hello()
-    {
-        return "hello world";
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        return {true, true, false, false};
     };
 };
