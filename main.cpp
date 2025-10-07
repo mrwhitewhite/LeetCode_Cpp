@@ -3,8 +3,9 @@
 int main()
 {
     Solution test_sol;
-    cout << test_sol.gcdOfStrings("ABABABABABABABABAB", "ABABABABABAB");
+    cout << test_sol.gcdOfStrings("ABABABAB", "ABAB");
+    // cout << test_sol.repeat_string("AB", 5);
     // cout << test_sol.gcdOfStrings("LEET", "CODE");
-    // cout << test_sol.smallest_factor_str("ABAB");
+    // cout << test_sol.lcdOfStr("ABAB");
     return 0;
 }

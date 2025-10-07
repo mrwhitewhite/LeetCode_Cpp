@@ -8,89 +8,64 @@ class Solution
 public:
     string gcdOfStrings(string str1, string str2)
     {
-        string out;
-        string factor_of_short_str;
-        string short_str = str1.length() < str2.length() ? str1 : str2;
-        string long_str = str1.length() >= str2.length() ? str1 : str2;
+        string lcd;
+        int lcd_len;
         int str1_len = str1.length();
         int str2_len = str2.length();
-        int short_str_len = short_str.length();
-        int factor_of_short_str_len;
-        int factor_count_str1;
-        int factor_count_str2;
-        int factor_count_gcd;
-
-        // verify gcd availability
-        // if (!check_gcd_availability(str1, str2))
+        int factor_count_1;
+        int factor_count_2;
+        int factor_common_count;
+        bool commutative_test;
+        // make sure length str1 >= str2
+        // if (str1_len < str2_len)
         // {
-        //     return "";
-        // };
-
-        // find lcd
-        factor_of_short_str = lcd_string(short_str);
-        factor_of_short_str_len = factor_of_short_str.length();
-        factor_count_str1 = str1_len / factor_of_short_str_len;
-        factor_count_str2 = str2_len / factor_of_short_str_len;
-        factor_count_gcd = gcd(factor_count_str1, factor_count_str2);
-
-        // verify
-        out = repeat_string(factor_of_short_str, factor_count_gcd);
-        if (long_str == repeat_string(factor_of_short_str, str1_len >= str2_len ? factor_count_str1 : factor_count_str2))
-        {
-            return out;
-        }
-        else
-        {
+            //     swap(str1, str2);
+            // };
+            
+        // commutative test (true if valid)
+        commutative_test = (str1+str2) != (str2+str1);
+        if (commutative_test){
             return "";
         };
+            
+        // get lcd
+        lcd = lcdOfStr(str2);
+        lcd_len = lcd.length();
+
+        // get factor count
+        factor_count_1 = str1_len / lcd_len;
+        factor_count_2 = str2_len / lcd_len;
+        factor_common_count = gcd(factor_count_1, factor_count_2);
+
+        // return gcd
+        return repeat_string(lcd, factor_common_count);
     };
 
-    string lcd_string(string string_in)
-    {
+    string lcdOfStr(string str1){
         string out;
-        int str_len = string_in.length();
+        int out_len;
+        int str_len = str1.length();
 
-        for (int i = 1; i <= str_len; i++)
-        {
-            int factor_count = str_len / i;
-            int word_count = i;
-            out = string_in.substr(0, i);
+        for(char c:str1){
+            out += c;
+            out_len = out.length();
 
-            if (string_in == repeat_string(out, factor_count))
-            {
-                return out;
+            if(str_len % out_len == 0){
+                if (str1 == repeat_string(out, str_len / out_len)){
+                    return out;
+                };
             };
         };
-        return string_in;
-    };
 
-    bool check_gcd_availability(string str1, string str2)
+        return str1;
+    }
+
+    string repeat_string(string str1, int count)
     {
         string out;
-        string tmp_str1_out;
-        string tmp_str2_out;
-        int str1_len = str1.length();
-        int str2_len = str2.length();
-
-        for (int i = 0; i < min(str1_len, str2_len); i++)
-        {
-            char _str1_char = str1[i];
-            char _str2_char = str2[i];
-
-            if (_str1_char != _str2_char)
-            {
-                return false;
-            };
-        };
-        return true;
-    };
-
-    string repeat_string(string str_in, int count)
-    {
-        string out = "";
         for (int i = 0; i < count; i++)
         {
-            out += str_in;
+            out += str1;
         };
         return out;
     };
