@@ -11,6 +11,7 @@ public:
         string out;
         string factor_of_short_str;
         string short_str = str1.length() < str2.length() ? str1 : str2;
+        string long_str = str1.length() >= str2.length() ? str1 : str2;
         int str1_len = str1.length();
         int str2_len = str2.length();
         int short_str_len = short_str.length();
@@ -34,8 +35,7 @@ public:
 
         // verify
         out = repeat_string(factor_of_short_str, factor_count_gcd);
-        if (str1 == repeat_string(factor_of_short_str, factor_count_str1) &&
-            str2 == repeat_string(factor_of_short_str, factor_count_str2))
+        if (long_str == repeat_string(factor_of_short_str, str1_len >= str2_len ? factor_count_str1 : factor_count_str2))
         {
             return out;
         }
