@@ -3,6 +3,6 @@
 int main()
 {
     Solution test_sol;
-    cout << test_sol.hello();
+    cout << test_sol.gcdOfStrings("ABABAB", "ABAB");
     return 0;
 }
