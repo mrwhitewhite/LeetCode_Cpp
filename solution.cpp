@@ -2,11 +2,10 @@
 using namespace std;
 
 // class here
-class Solution
-{
+class Solution {
 public:
-    string hello()
-    {
-        return "hello world";
-    };
+    string reverseVowels(string s) {
+        string out = s;
+        return out;
+    }
 };
