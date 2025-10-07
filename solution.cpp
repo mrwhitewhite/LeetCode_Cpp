@@ -9,83 +9,80 @@ public:
     string gcdOfStrings(string str1, string str2)
     {
         string out;
-        string str1_factor = smallest_factor_str(str1);
-        string str2_factor = smallest_factor_str(str2);
-        string shorter_factor;
-        string target_str1;
-        string target_str2;
-        int shorter_factor_len;
+        string factor_of_short_str;
+        string short_str = str1.length() < str2.length() ? str1 : str2;
         int str1_len = str1.length();
         int str2_len = str2.length();
-        int str1_factor_len = str1_factor.length();
-        int str2_factor_len = str2_factor.length();
-        int out_len;
-        int str1_factor_count = str1_len / str1_factor_len;
-        int str2_factor_count = str2_len / str2_factor_len;
-        int common_greatest_factor_count = gcd(str1_factor_count, str2_factor_count);
+        int short_str_len = short_str.length();
+        int factor_of_short_str_len;
+        int factor_count_str1;
+        int factor_count_str2;
+        int factor_count_gcd;
 
-        // get longer and shorter factor
-        if (str1_factor_len <= str2_factor_len)
-        {
-            shorter_factor = str1_factor;
-            shorter_factor_len = shorter_factor.length();
-        }
-        else
-        {
-            shorter_factor = str2_factor;
-            shorter_factor_len = shorter_factor.length();
-        };
+        // verify gcd availability
+        // if (!check_gcd_availability(str1, str2))
+        // {
+        //     return "";
+        // };
 
-        // get common factor
-        out = repeat_string(shorter_factor, common_greatest_factor_count);
-        out_len = out.length();
+        // find lcd
+        factor_of_short_str = lcd_string(short_str);
+        factor_of_short_str_len = factor_of_short_str.length();
+        factor_count_str1 = str1_len / factor_of_short_str_len;
+        factor_count_str2 = str2_len / factor_of_short_str_len;
+        factor_count_gcd = gcd(factor_count_str1, factor_count_str2);
 
         // verify
-        if (
-            (str1 == repeat_string(out, str1_len / out_len)) and
-            (str2 == repeat_string(out, str2_len / out_len)))
+        out = repeat_string(factor_of_short_str, factor_count_gcd);
+        if (str1 == repeat_string(factor_of_short_str, factor_count_str1) &&
+            str2 == repeat_string(factor_of_short_str, factor_count_str2))
         {
             return out;
-        } else
+        }
+        else
         {
             return "";
         };
     };
 
-    string smallest_factor_str(string str_in)
+    string lcd_string(string string_in)
     {
         string out;
-        int str_len = str_in.length();
-        int factor_count;
+        int str_len = string_in.length();
 
-        for (char c : str_in)
+        for (int i = 1; i <= str_len; i++)
         {
-            out += c;
+            int factor_count = str_len / i;
+            int word_count = i;
+            out = string_in.substr(0, i);
 
-            // continue if not factor(based on division)
-            if (str_len % out.length() != 0)
-            {
-                continue;
-            }
-            else
-            {
-                factor_count = str_len / out.length();
-            };
-
-            // return str_in if factor count == 1
-            if (factor_count == 1)
-            {
-                return str_in;
-            };
-
-            // check factor using repeat_string
-            if (repeat_string(out, factor_count) == str_in)
+            if (string_in == repeat_string(out, factor_count))
             {
                 return out;
             };
         };
+        return string_in;
+    };
 
-        return out;
+    bool check_gcd_availability(string str1, string str2)
+    {
+        string out;
+        string tmp_str1_out;
+        string tmp_str2_out;
+        int str1_len = str1.length();
+        int str2_len = str2.length();
+
+        for (int i = 0; i < min(str1_len, str2_len); i++)
+        {
+            char _str1_char = str1[i];
+            char _str2_char = str2[i];
+
+            if (_str1_char != _str2_char)
+            {
+                return false;
+            };
+        };
+        return true;
     };
 
     string repeat_string(string str_in, int count)
