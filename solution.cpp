@@ -2,11 +2,9 @@
 using namespace std;
 
 // class here
-class Solution
-{
+class Solution {
 public:
-    string hello()
-    {
-        return "hello world";
-    };
+    string reverseWords(string s) {
+        return s;
+    }
 };
