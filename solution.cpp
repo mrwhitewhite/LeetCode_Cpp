@@ -11,11 +11,9 @@ public:
     {
         deque<char> stored_vowels;
         deque<int> stored_index;
-        int len = s.length();
-        int list_len;
 
         // find the vowel and indexs
-        for (int i = 0; i < len; i++)
+        for (int i = 0; i < s.length(); i++)
         {
             if (isVowel(s.at(i)))
             {
