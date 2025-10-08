@@ -1,4 +1,4 @@
-#include <deque>
+#include <vector>
 #include <algorithm>
 #include <iostream>
 using namespace std;
@@ -9,27 +9,24 @@ class Solution
 public:
     string reverseVowels(string s)
     {
-        deque<char> stored_vowels;
-        deque<int> stored_index;
+        vector<char> stored_vowels;
+        vector<int> stored_index;
 
         // find the vowel and indexs
         for (int i = 0; i < s.length(); i++)
         {
             if (isVowel(s.at(i)))
             {
-                stored_vowels.push_front(s.at(i));
+                stored_vowels.push_back(s.at(i));
                 stored_index.push_back(i);
-            }
-            else
-            {
-                continue;
             }
         }
 
         // reverse vowel
-        for (int j = 0; j < stored_vowels.size(); j++)
-        {
-            s.at(stored_index.at(j)) = stored_vowels.at(j);
+        vector<char>::iterator it_vowels = stored_vowels.end();
+
+        for(int i : stored_index){
+            s.at(i) = *(--it_vowels);
         }
 
         return s;
