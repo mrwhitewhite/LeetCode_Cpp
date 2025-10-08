@@ -3,29 +3,44 @@
 using namespace std;
 
 // class here
-class Solution {
+class Solution
+{
 public:
-    string reverseWords(string s) {
-        s.push_back(' ');
+    string reverseWords(string s)
+    {
+        s.push_back(' '); // end the string with space for compatability
+
         vector<string> word_vector;
         string tmp_string;
         string out;
         int len = s.length();
-        bool first_char = false; // set to true if ptr passed through the leading space, to the first char
+        int i = 0;
         bool isrecording = false; // set to true if recording a word
 
-        // get word into vector
-        for(int i=0 ; i<len ; i++){
+        // get first index after remove trailing spce
+        for (i; i < len; i++)
+        {
             char _current_char = s.at(i);
-            // cout << _current_char << ", ";
-            
+
             // skip leading space
-            if(_current_char == ' ' and !first_char){
+            if (_current_char == ' ')
+            {
                 continue;
-            };
-            
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        // get word into vector
+        for (i; i < len; i++)
+        {
+            char _current_char = s.at(i);
+
             // stop recording
-            if(_current_char == ' ' and first_char and isrecording){
+            if (_current_char == ' ' and isrecording)
+            {
                 word_vector.push_back(tmp_string);
                 tmp_string.clear();
                 isrecording = false;
@@ -33,18 +48,18 @@ public:
             };
 
             // record word
-            if(_current_char != ' '){
-                first_char = true;
+            if (_current_char != ' ')
+            {
                 isrecording = true;
                 tmp_string += _current_char;
                 continue;
             }
-            
         }
 
         // turn vector into string of text
         vector<string>::reverse_iterator it;
-        for(it = word_vector.rbegin() ; it != word_vector.rend() ; it++){
+        for (it = word_vector.rbegin(); it != word_vector.rend(); it++)
+        {
             out += *it;
             out += " ";
         }
