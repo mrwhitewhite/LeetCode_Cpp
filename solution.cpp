@@ -1,7 +1,5 @@
-#include <array>
 #include <deque>
 #include <algorithm>
-#include <cctype>
 #include <iostream>
 using namespace std;
 
@@ -41,13 +39,17 @@ public:
 
     bool isVowel(char s)
     {
-        char s_lower = (char)tolower(s);
         if (
-            s_lower == 'a' or
-            s_lower == 'e' or
-            s_lower == 'i' or
-            s_lower == 'o' or
-            s_lower == 'u')
+            s == 'a' or
+            s == 'e' or
+            s == 'i' or
+            s == 'o' or
+            s == 'u' or
+            s == 'A' or
+            s == 'E' or
+            s == 'I' or
+            s == 'O' or
+            s == 'U')
         {
             return true;
         }
