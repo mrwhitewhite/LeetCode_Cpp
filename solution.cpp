@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <numeric>
 using namespace std;
 
 // class here
@@ -8,26 +9,27 @@ class Solution
 public:
     vector<int> productExceptSelf(vector<int> &nums)
     {
-        vector<int> out;
+        int left_value = 1;
+        int right_value;
         int len = nums.size();
-        int tmp_nums;
-        int i1 = 0;
+        vector<int> out;
 
-        for (i1; i1 < len; i1++)
+        for (int i = 0; i < len; i++)
         {
-            tmp_nums = 1;
-            for (int i2 = 0; i2 < len; i2++)
-            {
-                if (i2 == i1)
-                    continue;
-                else if (tmp_nums == 0)
-                    break;
-                else
-                    tmp_nums *= nums.at(i2);
-            }
-            out.push_back(tmp_nums);
-        }
+            if (i != 0)
+                {left_value *= nums.at(i-1);}
 
+            if (i+1 < len)
+                right_value = accumulate(nums.begin() + i + 1, nums.end(), 1, product);
+            else
+                right_value = 1;
+            out.push_back(left_value * right_value);
+        };
         return out;
-    }
+    };
+
+    static int product(int a, int b)
+    {
+        return a * b;
+    };
 };
