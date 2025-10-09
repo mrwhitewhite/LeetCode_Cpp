@@ -11,7 +11,7 @@ void print_vector(vector<int> vec)
 int main()
 {
     Solution test_sol;
-    vector<int> input = {1,2,3,4};
+    vector<int> input = {1,2,0,3,4};
     print_vector(test_sol.productExceptSelf(input));
     return 0;
 }
