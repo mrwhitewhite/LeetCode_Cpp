@@ -1,3 +1,4 @@
+#include <vector>
 #include <iostream>
 using namespace std;
 
@@ -5,8 +6,8 @@ using namespace std;
 class Solution
 {
 public:
-    string hello()
+    bool increasingTriplet(vector<int> &nums)
     {
-        return "hello world";
-    };
+        return true;
+    }
 };
