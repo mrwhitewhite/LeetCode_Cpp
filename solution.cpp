@@ -9,18 +9,37 @@ public:
     bool increasingTriplet(vector<int> &nums)
     {
         int n = nums.size();
-        int prev;
-        int current;
-        int next;
-        for (int i = 1; i < n - 1; i++)
-        {
-            prev = nums.at(i - 1);
-            current = nums.at(i);
-            next = nums.at(i + 1);
 
-            if (prev < current && current < next)
-                return true;
-        };
+        for (int i = 0; i < n; ++i)
+        {
+            for (int j = 1; j < n; ++j)
+            {
+                // skip iteration
+                if (i == j)
+                    continue;
+
+                for (int k = 2; k < n; ++k)
+                {
+                    // cout << nums.at(i) << " " << nums.at(j) << " " << nums.at(k) << endl;
+                    // cout << i << " " << j << " " << k << endl;
+
+                    // skip iteration
+                    if (j == k)
+                        continue;
+                    if(nums.at(i) > nums.at(j))
+                        continue;
+
+                    if (i < j and j < k)
+                    {
+                        // verify number
+                        if (nums.at(i) < nums.at(j) and nums.at(j) < nums.at(k))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
 
         return false;
     }

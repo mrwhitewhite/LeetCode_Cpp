@@ -3,7 +3,7 @@
 int main()
 {
     Solution test_sol;
-    vector<int> input = {5, 4, 3, 2, 1};
+    vector<int> input = {20, 100, 10, 12, 5, 13}; // 10, 12,13
 
     if (test_sol.increasingTriplet(input))
     {
