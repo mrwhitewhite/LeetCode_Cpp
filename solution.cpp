@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 // class here
@@ -8,37 +9,13 @@ class Solution
 public:
     bool increasingTriplet(vector<int> &nums)
     {
-        int n = nums.size();
+        int min = *min_element(nums.begin(), nums.end());
+        int max = *max_element(nums.begin(), nums.end());
 
-        for (int i = 0; i < n; ++i)
+        for (int i : nums)
         {
-            for (int j = 1; j < n; ++j)
-            {
-                // skip iteration
-                if (i == j)
-                    continue;
-
-                for (int k = 2; k < n; ++k)
-                {
-                    // cout << nums.at(i) << " " << nums.at(j) << " " << nums.at(k) << endl;
-                    // cout << i << " " << j << " " << k << endl;
-
-                    // skip iteration
-                    if (j == k)
-                        continue;
-                    if(nums.at(i) > nums.at(j))
-                        continue;
-
-                    if (i < j and j < k)
-                    {
-                        // verify number
-                        if (nums.at(i) < nums.at(j) and nums.at(j) < nums.at(k))
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
+            if (i > min and i < max)
+                return true;
         }
 
         return false;
