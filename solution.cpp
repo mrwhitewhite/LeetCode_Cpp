@@ -1,12 +1,13 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // class here
 class Solution
 {
 public:
-    string hello()
+    int compress(vector<char> &chars)
     {
-        return "hello world";
-    };
+        return 0;
+    }
 };

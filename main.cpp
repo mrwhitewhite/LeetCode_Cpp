@@ -3,6 +3,7 @@
 int main()
 {
     Solution test_sol;
-    cout << test_sol.hello();
+    vector<char> input = {'a', 'a', 'b', 'b', 'c', 'c', 'c'};
+    cout << test_sol.compress(input);
     return 0;
 }
