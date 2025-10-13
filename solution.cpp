@@ -10,7 +10,7 @@ public:
     int compress(vector<char> &chars)
     {
         int n = chars.size();
-        string out = "";
+        vector<string> out;
         char current_char = chars.at(0);
         int count = 0;
         char c;
@@ -19,33 +19,36 @@ public:
         {
             c = chars.at(i);
             // cout << "Current char: " << current_char << ", count: " << count << ", processing: " << c << endl;
-            if (current_char != c or i == n - 1)
+            if (c == current_char)
             {
-                if(i==n-1)
-                    count++;
+                count++;
 
-                // recording
-                if (count == 1)
+                // last element
+                if (i == n - 1)
                 {
-                    out = out + current_char;
+                    out.push_back(to_string(current_char));
+                    out.push_back(to_string(count));
                 }
-                else
-                {
-                    out = out + current_char + to_string(count);
-                }
-
-                // reset to new
-                current_char = c;
-                count = 1;
-                continue;
             }
             else
             {
-                count += 1;
+                out.push_back(to_string(current_char));
+                out.push_back(to_string(count));
+
+                current_char = c;
+                count = 1;
             }
         }
 
+        print_vector(out);
         // cout << out << endl;
         return out.size();
+    }
+
+    void print_vector(vector<string> in){
+        for (string s : in){
+            cout << s << " ";
+        }
+        cout << endl;
     }
 };
