@@ -8,19 +8,25 @@ class Solution
 public:
     void moveZeroes(vector<int> &nums)
     {
-        int count = 0;
-        int i = 0;
-        while (i < nums.size())
+        int ptr = 0;
+        int current;
+
+        for (int i = 0; i < nums.size(); i++)
         {
-            if (nums.at(i) == 0)
+            current = nums.at(i);
+            if (current == 0)
             {
-                count++;
-                nums.erase(nums.begin() + i);
                 continue;
             }
             else
-                i++;
+            {
+                nums.at(ptr++) = current;
+            }
         }
-        nums.insert(nums.end(), count, 0);
+
+        for (; ptr < nums.size(); ptr++)
+        {
+            nums.at(ptr) = 0;
+        }
     }
 };
