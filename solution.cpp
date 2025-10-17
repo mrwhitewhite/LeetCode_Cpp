@@ -9,31 +9,22 @@ class Solution
 public:
     int compress(vector<char> &chars)
     {
-        int count = 0;
-        string text;
-        int i = 0;
-        bool looping = true;
         char counting_char = chars.at(0);
+        int count = 0;
+        int i = 0;
+        string text;
 
-        while (looping)
+        while (i<chars.size())
         {
             char _char = chars.at(i);
 
             // continue counting
             if (_char == counting_char)
             {
-                if (i < chars.size() - 1)
-                {
-                    chars.erase(chars.begin() + i);
-                    count++;
+                chars.erase(chars.begin() + i);
+                count++;
+                if (i < chars.size())
                     continue;
-                }
-                else
-                {
-                    chars.erase(chars.begin() + i);
-                    count++;
-                    looping = false;
-                }
             }
 
             // generate text
