@@ -1,12 +1,12 @@
 #include <iostream>
+#include <vector>
+#include "tools.cpp"
 using namespace std;
 
 // class here
-class Solution
-{
+class Solution {
 public:
-    string hello()
-    {
-        return "hello world";
-    };
+    int maxArea(vector<int>& height) {
+        return 0;
+    }
 };
