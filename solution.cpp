@@ -2,11 +2,9 @@
 using namespace std;
 
 // class here
-class Solution
-{
+class Solution {
 public:
-    string hello()
-    {
-        return "hello world";
-    };
+    bool isSubsequence(string s, string t) {
+        return false;
+    }
 };
