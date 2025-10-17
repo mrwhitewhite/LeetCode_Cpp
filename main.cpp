@@ -1,4 +1,5 @@
 #include "solution.cpp"
+#include "tools.cpp"
 
 int main()
 {
