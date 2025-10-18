@@ -13,12 +13,14 @@ public:
     {
         int i = 0;
         int j = k - 1 + i;
-        double max_mean = accumulate(nums.begin() + i, nums.begin() + j + 1, 0.0) / (j - i + 1);
+        double sum = accumulate(nums.begin() + i, nums.begin() + j + 1, 0.0);
+        double max_mean = sum / k;
         j = k - 1 + (++i);
 
         while (j < nums.size())
         {
-            max_mean = max(max_mean, accumulate(nums.begin() + i, nums.begin() + j + 1, 0.0) / (j - i + 1));
+            sum = sum - nums[i - 1] + nums[j];
+            max_mean = max(max_mean, sum / k);
             j = k - 1 + (++i);
         }
 
