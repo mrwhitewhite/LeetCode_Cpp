@@ -4,11 +4,9 @@
 using namespace std;
 
 // class here
-class Solution
-{
+class Solution {
 public:
-    string hello()
-    {
-        return "hello world";
-    };
+    int longestOnes(vector<int>& nums, int k) {
+        return k;
+    }
 };
