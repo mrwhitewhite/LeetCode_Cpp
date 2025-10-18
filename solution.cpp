@@ -24,25 +24,11 @@ public:
 
         for (; i < s.size(); i++)
         {
-            char out = s[i - k];
-            char in = s[i];
-
-            cout << out << " " << in << endl;
-
-            if (check_vowel(out))
-            {
-                cout << "decrease" << endl;
+            if (check_vowel(s[i - k]))
                 recording--;
-            }
 
-            if (check_vowel(in))
-            {
-                cout << "increase" << endl;
-                recording++;
-                record_max = max(record_max, recording);
-            }
-
-            cout << recording << endl;
+            if (check_vowel(s[i]))
+                record_max = max(record_max, ++recording);
         }
 
         return record_max;
