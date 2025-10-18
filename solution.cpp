@@ -34,15 +34,12 @@ public:
         return record_max;
     }
 
-    bool check_vowel(char c)
+    inline bool check_vowel(const char &c)
     {
-        if (c == 'a' or
-            c == 'e' or
-            c == 'i' or
-            c == 'o' or
-            c == 'u')
-            return true;
-        else
-            return false;
+        return (c == 'a' or
+                c == 'e' or
+                c == 'i' or
+                c == 'o' or
+                c == 'u');
     }
 };
