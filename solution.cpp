@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "tools.cpp"
 using namespace std;
 
@@ -11,31 +12,26 @@ public:
     {
         int count = 0;
         int i = 0;
-        int j = 1;
-
-        while (i < nums.size())
+        int j = nums.size() - 1;
+        sort(nums.begin(), nums.end());
+        while (i < j)
         {
-            if (nums[i] >= k)
+            if (nums[j] > k)
             {
-                j = ++i + 1;
+                j--;
                 continue;
             }
 
-            while (j < nums.size())
+            if (nums[i] + nums[j] == k)
             {
-                if (nums[i] + nums[j] == k)
-                {
-                    nums[i] = k;
-                    nums[j] = k;
-                    count++;
-                    j = i;
-                    i--;
-                    break;
-                }
-                else
-                    j++;
+                i++;
+                j--;
+                count++;
             }
-            j = ++i + 1;
+            else if (nums[i] + nums[j] > k)
+                j--;
+            else if (nums[i] + nums[j] < k)
+                i++;
         }
 
         return count;
