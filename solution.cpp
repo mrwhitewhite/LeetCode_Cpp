@@ -11,30 +11,32 @@ public:
     {
         int right = 0, zeroCount = 0, max_len = 0;
 
-        for (int i = 0; i < nums.size() && right >= i; i++)
+        for (int i = 0; i < nums.size(); i++)
         {
             if (nums[i] == 0)
                 zeroCount++;
 
-            // loop right ptr
-            while (zeroCount <= 1 && right < (nums.size() - 1))
+            // right following i
+            if (i > right)
+                right = i;
+
+            // loop right ptr until no zero count
+            while (right < (nums.size() - 1) && (zeroCount < 1 || nums[right + 1] == 1))
             {
-                if (zeroCount < 1)
+                if (nums[++right] == 0)
+                    zeroCount++;
+                if (zeroCount == 2)
                 {
-                    if (nums[++right] == 0)
-                        zeroCount++;
-                }
-                else if (zeroCount == 1)
-                {
-                    if (nums[++right] == 0)
-                    {
-                        right--;
-                        break;
-                    }
+                    right--;
+                    zeroCount--;
+                    break;
                 }
             }
-            max_len = max(right - i, max_len);
 
+            // cout << "i: " << i << " right: " << right << " zeroCount: " << zeroCount << " n_element: " << right - i + 1 << endl;
+            // print_vector_slice(nums, i, right);
+
+            max_len = max(right - i, max_len);
             // post-record action
             if (nums[i] == 0)
                 zeroCount--;
