@@ -7,8 +7,7 @@ using namespace std;
 class Solution
 {
 public:
-    string hello()
+    vector<vector<int>> findDifference(vector<int> &nums1, vector<int> &nums2)
     {
-        return "hello world";
-    };
+    }
 };
