@@ -12,8 +12,8 @@ int main()
     vector<int> vec3 = {0,0,0,1}; // Expected output: 1
     int k3 = 4;
 
-    // cout << test_sol.longestOnes(vec1, k1) << endl;
-    // cout << test_sol.longestOnes(vec2, k2) << endl;
+    cout << test_sol.longestOnes(vec1, k1) << endl;
+    cout << test_sol.longestOnes(vec2, k2) << endl;
     cout << test_sol.longestOnes(vec3, k3) << endl;
     return 0;
 }
