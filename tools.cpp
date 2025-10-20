@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <unordered_set>
 
 // print vector for any element datatype
 template <typename T>
@@ -26,6 +27,15 @@ void print_vector_slice(const std::vector<T>& vec, int start, int end)
         return;
     }
     for (int i = start; i <= end; ++i)
-        std::cout << vec[i] << ", ";
+        std::cout << vec[i] << " ";
+    std::cout << std::endl;
+}
+
+// print unordered set for any element datatype
+template <typename T>
+void print_unordered_set(const std::unordered_set<T>& uset)
+{
+    for (const auto& elem : uset)
+        std::cout << elem << " ";
     std::cout << std::endl;
 }
