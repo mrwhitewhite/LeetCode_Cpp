@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 #include <algorithm>
 #include "tools.cpp"
 using namespace std;
@@ -14,34 +13,31 @@ public:
         if (word1.size() != word2.size())
             return false;
 
-        unordered_multiset<int> set1 = {};
-        unordered_multiset<int> set2 = {};
-        vector<int> hashmap1(26, 0);
-        vector<int> hashmap2(26, 0);
+        int hashmap1[26] = {0};
+        int hashmap2[26] = {0};
 
         // converting to hashmap
         for (char c : word1)
-            hashmap1[to_hashValue(c)]++;
+            hashmap1[c - 'a']++;
         for (char c : word2)
-            hashmap2[to_hashValue(c)]++;
+            hashmap2[c - 'a']++;
 
         // verifying transmutation
         for (int i = 0; i < 26; i++)
         {
-            set1.insert(hashmap1[i]);
-            set2.insert(hashmap2[i]);
             if (hashmap1[i] == 0 ^ hashmap2[i] == 0)
                 return false;
         }
 
-        if (set1 == set2)
-            return true;
-        return false;
-    }
+        sort(hashmap1, hashmap1 + 26);
+        sort(hashmap2, hashmap2 + 26);
 
-    inline int to_hashValue(char alphabet)
-    {
-        // range 0-25
-        return alphabet - 'a';
+        for (int i = 0; i < 26; i++)
+        {
+            if (hashmap1[i] != hashmap2[i])
+                return false;
+        }
+
+        return true;
     }
 };
