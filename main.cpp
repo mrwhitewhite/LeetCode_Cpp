@@ -3,6 +3,14 @@
 int main()
 {
     Solution test_sol;
-    cout << test_sol.hello();
+
+    string q1_w1 = "'abc", q1_w2 = "'bca";
+    string q2_w1 = "'a", q2_w2 = "'aa";
+    string q3_w1 = "'cabbba", q3_w2 = "'abbccc";
+
+    print_bool(test_sol.closeStrings(q1_w1, q1_w2)); // expected: true
+    print_bool(test_sol.closeStrings(q2_w1, q2_w2)); // expected: false
+    print_bool(test_sol.closeStrings(q3_w1, q3_w2)); // expected: true
+
     return 0;
 }

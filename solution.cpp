@@ -7,8 +7,8 @@ using namespace std;
 class Solution
 {
 public:
-    string hello()
+    bool closeStrings(string word1, string word2)
     {
-        return "hello world";
-    };
+        return false;
+    }
 };
