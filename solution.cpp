@@ -13,10 +13,11 @@ public:
     {
         if (word1.size() != word2.size())
             return false;
-        unordered_set<int> set1 = {};
-        unordered_set<int> set2 = {};
-        int hashmap1[26] = {0};
-        int hashmap2[26] = {0};
+
+        unordered_multiset<int> set1 = {};
+        unordered_multiset<int> set2 = {};
+        vector<int> hashmap1(26, 0);
+        vector<int> hashmap2(26, 0);
 
         // converting to hashmap
         for (char c : word1)
@@ -33,9 +34,9 @@ public:
                 return false;
         }
 
-        if (hashmap1 == hashmap2)
+        if (set1 == set2)
             return true;
-        return true;
+        return false;
     }
 
     inline int to_hashValue(char alphabet)
