@@ -11,27 +11,31 @@ class Solution
 public:
     bool closeStrings(string word1, string word2)
     {
-        vector<int> hashmap1(26, 0);
-        vector<int> hashmap2(26, 0);
-        int n = word1.size();
-
-        if (n != word2.size())
+        if (word1.size() != word2.size())
             return false;
+        unordered_set<int> set1 = {};
+        unordered_set<int> set2 = {};
+        int hashmap1[26] = {0};
+        int hashmap2[26] = {0};
 
         // converting to hashmap
-        for (int i = 0; i < n; i++)
-        {
-            hashmap1[to_hashValue(word1[i])]++;
-            hashmap2[to_hashValue(word2[i])]++;
-        }
+        for (char c : word1)
+            hashmap1[to_hashValue(c)]++;
+        for (char c : word2)
+            hashmap2[to_hashValue(c)]++;
 
-        // verifying same hashmap
-        sort(hashmap1.begin(), hashmap1.end());
-        sort(hashmap2.begin(), hashmap2.end());
+        // verifying transmutation
+        for (int i = 0; i < 26; i++)
+        {
+            set1.insert(hashmap1[i]);
+            set2.insert(hashmap2[i]);
+            if (hashmap1[i] == 0 ^ hashmap2[i] == 0)
+                return false;
+        }
 
         if (hashmap1 == hashmap2)
             return true;
-        return false;
+        return true;
     }
 
     inline int to_hashValue(char alphabet)
