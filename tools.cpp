@@ -60,3 +60,19 @@ void print_map(const std::map<K, V>& m)
     for (const auto& pair : m)
         std::cout << pair.first << ": " << pair.second << std::endl;
 }
+
+// print map<vector<int>, int>
+void print_map_vector_int_int(const std::map<std::vector<int>, int>& m)
+{
+    for (const auto& pair : m)
+    {
+        std::cout << "[";
+        for (size_t i = 0; i < pair.first.size(); ++i)
+        {
+            std::cout << pair.first[i];
+            if (i < pair.first.size() - 1)
+                std::cout << ", ";
+        }
+        std::cout << "]: " << pair.second << std::endl;
+    }
+}
