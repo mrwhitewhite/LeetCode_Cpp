@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <unordered_set>
+#include <map>
 
 // print vector for any element datatype
 template <typename T>
@@ -50,4 +51,12 @@ void print_matrix(const std::vector<std::vector<T>>& matrix)
             std::cout << elem << " ";
         std::cout << std::endl;
     }
+}
+
+// print map
+template <typename K, typename V>
+void print_map(const std::map<K, V>& m)
+{
+    for (const auto& pair : m)
+        std::cout << pair.first << ": " << pair.second << std::endl;
 }
