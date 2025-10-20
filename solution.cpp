@@ -7,8 +7,8 @@ using namespace std;
 class Solution
 {
 public:
-    string hello()
+    string removeStars(string s)
     {
-        return "hello world";
-    };
+        return s;
+    }
 };
