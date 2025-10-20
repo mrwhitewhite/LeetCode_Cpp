@@ -7,8 +7,8 @@ using namespace std;
 class Solution
 {
 public:
-    string hello()
+    bool uniqueOccurrences(vector<int> &arr)
     {
-        return "hello world";
-    };
+        return false;
+    }
 };
