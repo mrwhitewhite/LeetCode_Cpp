@@ -7,8 +7,8 @@ using namespace std;
 class Solution
 {
 public:
-    string hello()
+    int equalPairs(vector<vector<int>> &grid)
     {
-        return "hello world";
-    };
+        return -1;
+    }
 };
