@@ -39,3 +39,15 @@ void print_unordered_set(const std::unordered_set<T>& uset)
         std::cout << elem << " ";
     std::cout << std::endl;
 }
+
+// print matrix of vector<vector<T>>
+template <typename T>
+void print_matrix(const std::vector<std::vector<T>>& matrix)
+{
+    for (const auto& row : matrix)
+    {
+        for (const auto& elem : row)
+            std::cout << elem << " ";
+        std::cout << std::endl;
+    }
+}
