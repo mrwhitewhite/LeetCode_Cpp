@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_set>
+#include <algorithm>
 #include "tools.cpp"
 using namespace std;
 
@@ -10,29 +11,25 @@ class Solution
 public:
     bool closeStrings(string word1, string word2)
     {
-        int hashmap1[26] = {0}; // index: 0-25
-        int hashmap2[26] = {0}; // index: 0-25
-        unordered_set<int> set1 = {};
-        unordered_set<int> set2 = {};
+        vector<int> hashmap1(26, 0);
+        vector<int> hashmap2(26, 0);
+        int n = word1.size();
+
+        if (n != word2.size())
+            return false;
 
         // converting to hashmap
-        for (char c : word1)
+        for (int i = 0; i < n; i++)
         {
-            hashmap1[to_hashValue(c)]++;
-        }
-        for (char c : word2)
-        {
-            hashmap2[to_hashValue(c)]++;
+            hashmap1[to_hashValue(word1[i])]++;
+            hashmap2[to_hashValue(word2[i])]++;
         }
 
         // verifying same hashmap
-        for (int i = 0; i < 26; i++)
-        {
-            set1.insert(hashmap1[i]);
-            set2.insert(hashmap2[i]);
-        }
+        sort(hashmap1.begin(), hashmap1.end());
+        sort(hashmap2.begin(), hashmap2.end());
 
-        if (set1 == set2)
+        if (hashmap1 == hashmap2)
             return true;
         return false;
     }
