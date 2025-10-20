@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 #include "tools.cpp"
 using namespace std;
 
@@ -11,21 +12,35 @@ public:
     {
         int n = grid.size();
         int out = 0;
+        map<vector<int>, int> hash1;
+        map<vector<int>, int> hash2;
 
-        for (int row = 0; row < n; row++)
+        for (vector<int> row : grid)
+            hash1[row]++;
+
+        for (int col_i = 0; col_i < n; col_i++)
         {
-            for (int col = 0; col < n; col++)
+            vector<int> tmp;
+            for (vector<int> row : grid)
             {
-                for (int col_specific_element = 0; col_specific_element < n; col_specific_element++)
-                {
-                    // break if mismatch
-                    if (grid[row][col_specific_element] != grid[col_specific_element][col])
-                        break;
-                    else if (col_specific_element == n - 1)
-                        out++;
-                }
+                tmp.push_back(row[col_i]);
             }
+            hash2[tmp]++;
+            tmp.clear();
         }
+
+        for (const auto &[key, value] : hash1)
+        {
+            if (value == 0 or hash2[key] == 0)
+                continue;
+            out += hash2[key] * value;
+        }
+
+        // cout << "Hash  1:" << endl;
+        // print_map_vector_int_int(hash1);
+
+        // cout << "Hash  1:" << endl;
+        // print_map_vector_int_int(hash2);
 
         return out;
     }
