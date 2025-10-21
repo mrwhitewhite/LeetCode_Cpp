@@ -4,11 +4,9 @@
 using namespace std;
 
 // class here
-class Solution
-{
+class Solution {
 public:
-    string hello()
-    {
-        return "hello world";
-    };
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        return asteroids;
+    }
 };
