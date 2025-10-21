@@ -10,14 +10,22 @@ class Solution
 public:
     string removeStars(string s)
     {
-        for (int i = 0; i < s.size(); i++)
+        deque<char> arr;
+        string out;
+
+        for (char c : s)
         {
-            if (s[i] == '*')
+            if (c == '*')
             {
-                s.erase(s.begin() + --i);
-                s.erase(s.begin() + i--);
+                arr.pop_back();
+                continue;
             }
+
+            arr.push_back(c);
         }
-        return s;
+
+        for (char c : arr)
+            out += c;
+        return out;
     }
 };
