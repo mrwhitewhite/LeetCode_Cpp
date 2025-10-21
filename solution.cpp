@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <deque>
+#include <stack>
+#include <algorithm>
 #include "tools.cpp"
 using namespace std;
 
@@ -10,19 +11,26 @@ class Solution
 public:
     string removeStars(string s)
     {
+        stack<char> arr;
         string out;
 
         for (char c : s)
         {
             if (c == '*')
             {
-                out.pop_back();
+                arr.pop();
                 continue;
             }
 
-            out.push_back(c);
+            arr.push(c);
         }
 
+        while (!arr.empty())
+        {
+            out += arr.top();
+            arr.pop();
+        }
+        reverse(out.begin(), out.end());
         return out;
     }
 };
