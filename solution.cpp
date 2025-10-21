@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <stack>
 #include <algorithm>
 #include "tools.cpp"
 using namespace std;
@@ -11,26 +10,17 @@ class Solution
 public:
     string removeStars(string s)
     {
-        stack<char> arr;
-        string out;
+        int rep = 0;
 
-        for (char c : s)
+        for (int scan = 1; scan < s.size(); scan++)
         {
-            if (c == '*')
+            if (s[scan] == '*')
             {
-                arr.pop();
+                s[rep--] = s[scan + 1];
                 continue;
             }
-
-            arr.push(c);
+            s[++rep] = s[scan];
         }
-
-        while (!arr.empty())
-        {
-            out += arr.top();
-            arr.pop();
-        }
-        reverse(out.begin(), out.end());
-        return out;
+        return s.substr(0, rep + 1);
     }
 };
