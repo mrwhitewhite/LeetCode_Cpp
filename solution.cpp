@@ -11,20 +11,23 @@ class Solution
 public:
     string decodeString(string s)
     {
-        for (int i = 0; i < s.length(); i++)
+        int i = 0;
+        for (i; i < s.length(); i++)
         {
+            // cout << i << endl;
             if (isdigit(s[i]))
             {
                 tuple<int, int, int, string> t = findStartEnd(s, i);
                 s.replace(get<0>(t), get<1>(t) - get<0>(t) + 1, repeat_string(get<3>(t), get<2>(t)));
                 i = -1;
             }
+            // cout << i << endl;
         }
 
         return s;
     }
 
-    tuple<int, int, int, string> findStartEnd(const string &input, const int &start_i)
+    tuple<int, int, int, string> findStartEnd(const string &input, int &i)
     {
         // tuple[0] = starting index of compression
         // tuple[1] = ending index of compression
@@ -35,44 +38,45 @@ public:
         string n_rep_str;
         string compressed_str;
 
-        bool found_compression = false;
         int skip = 0;
-        for (int i = start_i; i < input.length(); i++)
+        for (; i < input.length(); i++)
         {
-            if (found_compression == false)
+            if (isdigit(input[i])) // current char is digit
             {
-                if (isdigit(input[i])) // current char is digit
-                {
-                    n_rep_str += input[i];
-                    if (idx_start == -1)
-                        idx_start = i;
-                }
-                else if (input[i] == '[') // current char is [
-                    found_compression = true;
+                n_rep_str += input[i];
+                if (idx_start == -1)
+                    idx_start = i;
             }
-            else // found_compression == true
+            else if (input[i] == '[') // current char is [
             {
-                if (input[i] == '[')
+                i++;
+                break;
+            }
+        }
+
+        for (; i < input.length(); i++)
+
+        {
+            if (input[i] == '[')
+            {
+                compressed_str += input[i];
+                skip++;
+            }
+            else if (input[i] == ']')
+            {
+                if (skip != 0)
                 {
                     compressed_str += input[i];
-                    skip++;
+                    skip--;
                 }
-                else if (input[i] == ']')
+                else if (skip == 0)
                 {
-                    if (skip != 0)
-                    {
-                        compressed_str += input[i];
-                        skip--;
-                    }
-                    else if (skip == 0)
-                    {
-                        idx_end = i;
-                        break;
-                    }
+                    idx_end = i;
+                    break;
                 }
-                else // input[i] be compressed_char
-                    compressed_str += input[i];
             }
+            else // input[i] be compressed_char
+                compressed_str += input[i];
         }
 
         return {idx_start, idx_end, stoi(n_rep_str), compressed_str};
@@ -81,7 +85,7 @@ public:
     string repeat_string(const string &str, const int &nrep)
     {
         string out = "";
-        for (int i = 0; i < nrep; i++)
+        while (out.length() < nrep * str.length())
             out += str;
         return out;
     }
