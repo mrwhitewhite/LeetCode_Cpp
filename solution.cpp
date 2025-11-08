@@ -17,7 +17,7 @@ public:
             {
                 tuple<int, int, int, string> t = findStartEnd(s, i);
                 s.replace(get<0>(t), get<1>(t) - get<0>(t) + 1, repeat_string(get<3>(t), get<2>(t)));
-                i = 0;
+                i = -1;
             }
         }
 
