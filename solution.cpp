@@ -11,10 +11,19 @@ class Solution
 public:
     string decodeString(string s)
     {
+        for (int i = 0; i < s.length(); i++)
+        {
+            if (isdigit(s[i]))
+            {
+                tuple<int, int, int, string> t = findStartEnd(s, i);
+                s.replace(get<0>(t), get<1>(t) - get<0>(t) + 1, repeat_string(get<3>(t), get<2>(t)));
+            }
+        }
+
         return s;
     }
 
-    tuple<int, int, int, string> findStartEnd(const string &input)
+    tuple<int, int, int, string> findStartEnd(const string &input, const int &start_i)
     {
         // tuple[0] = starting index of compression
         // tuple[1] = ending index of compression
@@ -27,7 +36,7 @@ public:
 
         bool found_compression = false;
         int skip = 0;
-        for (int i = 0; i < input.length(); i++)
+        for (int i = start_i; i < input.length(); i++)
         {
             if (found_compression == false)
             {
