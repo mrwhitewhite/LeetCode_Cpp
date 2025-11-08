@@ -61,4 +61,12 @@ public:
 
         return {idx_start, idx_end, stoi(n_rep_str), compressed_str};
     }
+
+    string repeat_string(const string &str, const int &nrep)
+    {
+        string out = "";
+        for (int i = 0; i < nrep; i++)
+            out += str;
+        return out;
+    }
 };
