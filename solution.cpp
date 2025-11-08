@@ -17,6 +17,7 @@ public:
             {
                 tuple<int, int, int, string> t = findStartEnd(s, i);
                 s.replace(get<0>(t), get<1>(t) - get<0>(t) + 1, repeat_string(get<3>(t), get<2>(t)));
+                i = 0;
             }
         }
 
@@ -52,11 +53,17 @@ public:
             else // found_compression == true
             {
                 if (input[i] == '[')
+                {
+                    compressed_str += input[i];
                     skip++;
+                }
                 else if (input[i] == ']')
                 {
                     if (skip != 0)
+                    {
+                        compressed_str += input[i];
                         skip--;
+                    }
                     else if (skip == 0)
                     {
                         idx_end = i;
@@ -77,5 +84,10 @@ public:
         for (int i = 0; i < nrep; i++)
             out += str;
         return out;
+    }
+
+    void print_tuple(const tuple<int, int, int, string> &t)
+    {
+        cout << "start_idx: " << get<0>(t) << ", end_idx: " << get<1>(t) << ", n_rep: " << get<2>(t) << ", comp_str: " << get<3>(t) << endl;
     }
 };
