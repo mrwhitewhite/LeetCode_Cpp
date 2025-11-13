@@ -11,87 +11,59 @@ class Solution
 public:
     string decodeString(string s)
     {
-        int i = 0;
-        for (i; i < s.length(); i++)
-        {
-            // cout << i << endl;
-            if (isdigit(s[i]))
-            {
-                tuple<int, int, int, string> t = findStartEnd(s, i);
-                s.replace(get<0>(t), get<1>(t) - get<0>(t) + 1, repeat_string(get<3>(t), get<2>(t)));
-                i = -1;
-            }
-            // cout << i << endl;
-        }
+        string rep_word = "";
+        int start_int_i = -1;
+        int end_int_i = -1;     // index of [
+        int end_replace_i = -1; // index of ]
 
+        for (int i = 0; i < s.length(); i++)
+        {
+            if (isdigit(s[i]) && start_int_i == -1) // detect first occurence of digit
+            {
+                start_int_i = i;
+            }
+            else if (isdigit(s[i]) && end_int_i != -1) // trigger when found nested ; by detect first digit after found '['
+            {
+                rep_word = decodeString(s.substr(i, s.length() - i)); // decode from i to end, eg. 3[a]]bc -> aaa]bc
+
+                // replace
+                s = s.replace(i, s.length() - i, rep_word); // eg. 2[3[a]]bc -> 2[aaa]bc
+
+                // reset
+                rep_word = "";
+            }
+            else if (s[i] == '[' && end_int_i == -1)
+            {
+                end_int_i = i;
+            }
+            else if (s[i] == ']' && start_int_i != -1)
+            {
+                end_replace_i = i;
+
+                // get info and replace
+                rep_word = s.substr(end_int_i + 1, end_replace_i - end_int_i - 1);
+                rep_word = repeat_string(rep_word, s.substr(start_int_i, end_int_i - start_int_i));
+                s = s.replace(start_int_i, end_replace_i - start_int_i + 1, rep_word);
+
+                // offset the i if extracted txt is shorter than compressed
+                if (end_replace_i - start_int_i + 1 - rep_word.length() > 0 && end_replace_i - start_int_i + 1 - rep_word.length() <= i)
+                    i -= end_replace_i - start_int_i + 1 - rep_word.length();
+
+                // reset
+                rep_word = "";
+                start_int_i = -1;
+                end_int_i = -1;
+                end_replace_i = -1;
+            }
+        }
         return s;
     }
 
-    tuple<int, int, int, string> findStartEnd(const string &input, int &i)
-    {
-        // tuple[0] = starting index of compression
-        // tuple[1] = ending index of compression
-        // tuple[2] = number of repeat
-        // tuple[3] = compressed string
-        int idx_start = -1;
-        int idx_end = -1;
-        string n_rep_str;
-        string compressed_str;
-
-        int skip = 0;
-        for (; i < input.length(); i++)
-        {
-            if (isdigit(input[i])) // current char is digit
-            {
-                n_rep_str += input[i];
-                if (idx_start == -1)
-                    idx_start = i;
-            }
-            else if (input[i] == '[') // current char is [
-            {
-                i++;
-                break;
-            }
-        }
-
-        for (; i < input.length(); i++)
-
-        {
-            if (input[i] == '[')
-            {
-                compressed_str += input[i];
-                skip++;
-            }
-            else if (input[i] == ']')
-            {
-                if (skip != 0)
-                {
-                    compressed_str += input[i];
-                    skip--;
-                }
-                else if (skip == 0)
-                {
-                    idx_end = i;
-                    break;
-                }
-            }
-            else // input[i] be compressed_char
-                compressed_str += input[i];
-        }
-
-        return {idx_start, idx_end, stoi(n_rep_str), compressed_str};
-    }
-
-    string repeat_string(const string &str, const int &nrep)
+    string repeat_string(const string &str, const string &nrep)
     {
         string out = "";
-        while (out.length() < nrep * str.length())
+        while (out.length() < (stoi(nrep) * str.length()))
             out += str;
         return out;
-    }
-
-    void print_tuple(const tuple<int, int, int, string> &t)
-    {
-        cout << "start_idx: " << get<0>(t) << ", end_idx: " << get<1>(t) << ", n_rep: " << get<2>(t) << ", comp_str: " << get<3>(t) << endl;
     }
 };
