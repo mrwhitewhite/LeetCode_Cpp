@@ -3,6 +3,6 @@
 int main()
 {
     Solution test_sol;
-    cout << test_sol.mergeAlternately("abcd", "pq");
+    cout << test_sol.hello();
     return 0;
 }
