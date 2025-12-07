@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "tools.cpp"
 using namespace std;
 
@@ -7,8 +8,19 @@ using namespace std;
 class Solution
 {
 public:
-    string hello()
+    string removeStars(string s)
     {
-        return "hello world";
-    };
+        int rep = 0;
+
+        for (int scan = 1; scan < s.size(); scan++)
+        {
+            if (s[scan] == '*')
+            {
+                s[rep--] = s[scan + 1];
+                continue;
+            }
+            s[++rep] = s[scan];
+        }
+        return s.substr(0, rep + 1);
+    }
 };
