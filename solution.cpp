@@ -1,4 +1,3 @@
-#include <vector>
 #include <iostream>
 #include <vector>
 #include "tools.cpp"
@@ -8,27 +7,8 @@ using namespace std;
 class Solution
 {
 public:
-    void moveZeroes(vector<int> &nums)
+    string hello()
     {
-        int ptr = 0;
-        int current;
-
-        for (int i = 0; i < nums.size(); i++)
-        {
-            current = nums.at(i);
-            if (current == 0)
-            {
-                continue;
-            }
-            else
-            {
-                nums.at(ptr++) = current;
-            }
-        }
-
-        for (; ptr < nums.size(); ptr++)
-        {
-            nums.at(ptr) = 0;
-        }
-    }
+        return "hello world";
+    };
 };
