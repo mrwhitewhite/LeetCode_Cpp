@@ -3,6 +3,7 @@
 int main()
 {
     Solution test_sol;
-    cout << test_sol.hello();
+    string input = "a good   example";
+    cout << test_sol.reverseWords(input);
     return 0;
 }
