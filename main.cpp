@@ -3,8 +3,6 @@
 int main()
 {
     Solution test_sol;
-    string input = "IceCreAm";
-
-    cout << test_sol.reverseVowels(input);
+    cout << test_sol.hello();
     return 0;
 }
