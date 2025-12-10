@@ -14,11 +14,11 @@ public:
         int out = 0;
         int c;
 
-        for (int a = 3; a <= 250; a++)
+        for (int a = 3; a <= n; a++)
         {
             if (a * a > N)
                 continue;
-            for (int b = 1; b <= 250; b++)
+            for (int b = 1; b <= n; b++)
             {
                 c = a * a + b * b;
 
