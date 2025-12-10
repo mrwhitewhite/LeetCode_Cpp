@@ -9,23 +9,16 @@ class Solution
 public:
     const int mod = 1e9 + 7;
 
-    int countPermutations(vector<int> &complexity)
+    int countPermutations(const vector<int> &complexity)
     {
-        const int n_complexity = size(complexity);
-        const int complexity_decrypted = complexity[0];
-        int out = 0;
-
-        // return 0 if exist complexity < complexity_decrypted
-        for (int i = 1; i < n_complexity; i++)
-        {
-            if (complexity[i] <= complexity_decrypted)
+        for (int i = 1; i < size(complexity); i++)
+            if (complexity[i] <= complexity[0])
                 return 0;
-        }
 
-        return n_perm(n_complexity - 1);
+        return n_perm(size(complexity) - 1);
     }
 
-    long long n_perm(int n)
+    int n_perm(const int &n)
     {
         if (n == 0)
             return 1;
