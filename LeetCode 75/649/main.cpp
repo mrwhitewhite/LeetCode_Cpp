@@ -9,9 +9,9 @@ int main()
     string senate3 = "DDRRR";
     string senate4 = "RRR";
 
-    // cout << test_sol.predictPartyVictory(senate1) << endl; // "Radiant"
-    // cout << test_sol.predictPartyVictory(senate2) << endl; // "Dire"
-    // cout << test_sol.predictPartyVictory(senate3) << endl; // "Dire"
+    cout << test_sol.predictPartyVictory(senate1) << endl; // "Radiant"
+    cout << test_sol.predictPartyVictory(senate2) << endl; // "Dire"
+    cout << test_sol.predictPartyVictory(senate3) << endl; // "Dire"
     cout << test_sol.predictPartyVictory(senate4) << endl; // "Radiant"
 
     return 0;
