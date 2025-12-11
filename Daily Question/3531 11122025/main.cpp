@@ -17,11 +17,11 @@ int main()
     int n6 = 4;
     vector<vector<int>> buildings6 = {{4, 4}, {2, 4}, {3, 4}, {2, 1}, {4, 3}, {4, 1}, {3, 1}, {1, 1}, {1, 4}, {4, 2}, {2, 2}, {3, 2}, {1, 3}};
 
-    // cout << test_sol.countCoveredBuildings(n1, buildings1) << endl; // Out: 1
-    // cout << test_sol.countCoveredBuildings(n2, buildings2) << endl; // Out: 0
-    // cout << test_sol.countCoveredBuildings(n3, buildings3) << endl; // Out: 1
-    // cout << test_sol.countCoveredBuildings(n4, buildings4) << endl; // Out: 0
-    // cout << test_sol.countCoveredBuildings(n5, buildings5) << endl; // Out: 0
+    cout << test_sol.countCoveredBuildings(n1, buildings1) << endl; // Out: 1
+    cout << test_sol.countCoveredBuildings(n2, buildings2) << endl; // Out: 0
+    cout << test_sol.countCoveredBuildings(n3, buildings3) << endl; // Out: 1
+    cout << test_sol.countCoveredBuildings(n4, buildings4) << endl; // Out: 0
+    cout << test_sol.countCoveredBuildings(n5, buildings5) << endl; // Out: 0
     cout << test_sol.countCoveredBuildings(n6, buildings6) << endl; // Out: 1
 
     return 0;
