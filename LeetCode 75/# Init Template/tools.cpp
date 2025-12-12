@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unordered_set>
 #include <map>
+#include <queue>
 using namespace std;
 
 // print vector for any element datatype
