@@ -99,3 +99,49 @@ void print_queue(queue<T> q)
     }
     cout << endl;
 }
+
+void print_vector_of_vector_of_string(const std::vector<std::vector<std::string>> &data)
+{
+
+    // Check if the outer vector is empty
+    if (data.empty())
+    {
+        std::cout << "()\n"; // Print an empty tuple if there's no data
+        return;
+    }
+
+    // Outer loop to iterate through each inner vector (which becomes a tuple)
+    for (size_t i = 0; i < data.size(); ++i)
+    {
+        const auto &inner_vec = data[i];
+
+        // 1. Print the opening parenthesis for the tuple
+        std::cout << "(";
+
+        // Inner loop to iterate through the strings in the current inner vector
+        for (size_t j = 0; j < inner_vec.size(); ++j)
+        {
+
+            // 2. Print the string
+            std::cout << inner_vec[j];
+
+            // 3. Print the comma and space, UNLESS it's the last element of the inner vector
+            if (j < inner_vec.size() - 1)
+            {
+                std::cout << ", ";
+            }
+        }
+
+        // 4. Print the closing parenthesis
+        std::cout << ")";
+
+        // 5. Print the comma and space, UNLESS it's the last tuple in the sequence
+        if (i < data.size() - 1)
+        {
+            std::cout << ", ";
+        }
+    }
+
+    // Print a newline at the end for clean output
+    std::cout << "\n";
+}
