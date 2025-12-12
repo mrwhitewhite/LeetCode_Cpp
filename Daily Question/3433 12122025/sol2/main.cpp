@@ -16,13 +16,16 @@ int main()
     vector<vector<string>> vec5 = {{"MESSAGE", "2", "HERE"}, {"OFFLINE", "2", "1"}, {"OFFLINE", "1", "0"}, {"MESSAGE", "61", "HERE"}};
     int n6 = 2;
     vector<vector<string>> vec6 = {{"MESSAGE", "70", "HERE"}, {"OFFLINE", "10", "0"}, {"OFFLINE", "71", "0"}};
+    int n7 = 3;
+    vector<vector<string>> vec7 = {{"MESSAGE", "5", "HERE"}, {"OFFLINE", "10", "0"}, {"MESSAGE", "15", "HERE"}, {"OFFLINE", "18", "2"}, {"MESSAGE", "20", "HERE"}};
 
     // print_vector(test_sol.countMentions(n1, vec1)); // Out: 2, 2
     // print_vector(test_sol.countMentions(n2, vec2)); // Out: 2, 2
     // print_vector(test_sol.countMentions(n3, vec3)); // Out: 0, 1
     // print_vector(test_sol.countMentions(n4, vec4));
     // print_vector(test_sol.countMentions(n5, vec5)); // Out: 1, 0, 2
-    print_vector(test_sol.countMentions(n6, vec6)); // Out: 1, 1
+    // print_vector(test_sol.countMentions(n6, vec6)); // Out: 1, 1
+    print_vector(test_sol.countMentions(n7, vec7)); // Out: 1, 3, 2
 
     // [Test] ExtractStringId
     // string name = "id53 id21 id8 id75 id90 id49";
