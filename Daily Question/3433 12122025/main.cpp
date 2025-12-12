@@ -11,8 +11,12 @@ int main()
     int n3 = 2;
     vector<vector<string>> vec3 = {{"OFFLINE", "10", "0"}, {"MESSAGE", "12", "HERE"}};
 
-    print_vector(test_sol.countMentions(n1, vec1));
-    print_vector(test_sol.countMentions(n2, vec2));
-    print_vector(test_sol.countMentions(n3, vec3));
+    // print_vector(test_sol.countMentions(n1, vec1));
+    // print_vector(test_sol.countMentions(n2, vec2));
+    // print_vector(test_sol.countMentions(n3, vec3));
+
+    // [Test] ExtractStringId
+    // string name = "id1 id0";
+    // print_vector(test_sol.ExtractStringId(name));
     return 0;
 }
