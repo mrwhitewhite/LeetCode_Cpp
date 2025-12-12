@@ -18,18 +18,22 @@ public:
     vector<int> ExtractStringId(const string &input)
     {
         vector<int> out;
-        string now = "";
-        for (char c : input + ' ')
+        int ptr = 0;
+        int i = 0;
+        for (; i < input.size(); i++)
         {
-            if (c == 'i' || c == 'd')
-                continue;
-            else if (c == ' ')
+            if (isdigit(input.at(i)))
             {
-                out.push_back(stoi(now));
-                now = "";
-                continue;
+                ptr = i;
+                for (; i < input.size(); i++)
+                {
+                    if (input.at(i) == ' ' || i == input.size() - 1)
+                    {
+                        out.push_back(stoi(input.substr(ptr, i - ptr + 1)));
+                        break;
+                    }
+                }
             }
-            now += c;
         }
         return out;
     }
