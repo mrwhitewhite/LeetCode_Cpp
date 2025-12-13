@@ -14,7 +14,7 @@ public:
         vector<bool> &isActive)
     {
         const int n = code.size();
-        vector<vector<string>> res;
+        vector<pair<string, string>> res;
         vector<string> out;
 
         for (int i = 0; i < n; i++)
@@ -31,25 +31,25 @@ public:
                     if (!(isdigit(c) || isalpha(c) || c == '_'))
                         break;
                     else if (j + 1 == code[i].size())
-                        res.push_back({code[i], businessLine[i]});
+                        res.push_back(make_pair(code[i], businessLine[i]));
                 }
             }
         }
 
-        sort(res.begin(), res.end(), [](const vector<string> &a, const vector<string> &b)
+        sort(res.begin(), res.end(), [](const pair<string, string> &a, const pair<string, string> &b)
              {
-            if (a[1] != b[1])
-                return a[1] < b[1];
+            if (a.second != b.second)
+                return a.second < b.second;
             else
-                return a[0] < b[0]; });
+                return a.first < b.first; });
 
         transform(
             res.begin(),
             res.end(),
             back_inserter(out),
-            [](const vector<string> &a)
+            [](const pair<string, string> &a)
             {
-                return a[0];
+                return a.first;
             });
 
         return out;
