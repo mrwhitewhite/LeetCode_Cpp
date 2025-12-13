@@ -145,3 +145,18 @@ void print_vector_of_vector_of_string(const std::vector<std::vector<std::string>
     // Print a newline at the end for clean output
     std::cout << "\n";
 }
+
+template <typename Node>
+void printLinkedList(Node *head)
+{
+    Node *current = head;
+    std::cout << "HEAD -> ";
+    while (current != nullptr)
+    {
+        std::cout << current->val;
+        if (current->next != nullptr)
+            std::cout << " -> ";
+        current = current->next;
+    }
+    std::cout << " -> NULL" << std::endl;
+}
