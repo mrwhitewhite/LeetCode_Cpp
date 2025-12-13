@@ -23,10 +23,14 @@ int main()
     ListNode *node_eg3_2 = new ListNode(1);
     ListNode *node_eg3_head = new ListNode(2, node_eg3_2);
 
+    // Eg 4 [1] ; n=1
+    ListNode *node_eg4_head = new ListNode(1);
+
     // Print linked list
-    printLinkedList(test_sol.deleteMiddle(node_eg1_head));
-    printLinkedList(test_sol.deleteMiddle(node_eg2_head));
-    printLinkedList(test_sol.deleteMiddle(node_eg3_head));
+    printLinkedList(test_sol.deleteMiddle(node_eg1_head)); // 1,3,4,1,2,6
+    printLinkedList(test_sol.deleteMiddle(node_eg2_head)); // 1,2,4
+    printLinkedList(test_sol.deleteMiddle(node_eg3_head)); // 2
+    printLinkedList(test_sol.deleteMiddle(node_eg4_head)); // []
 
     return 0;
 }
