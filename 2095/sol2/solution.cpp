@@ -18,6 +18,21 @@ class Solution
 public:
     ListNode *deleteMiddle(ListNode *head)
     {
+        if (!head || !head->next)
+            return nullptr;
+
+        ListNode *fast_head = head;
+        ListNode *slow_head = head;
+        ListNode *prev_slow_head = head;
+
+        while (fast_head && fast_head->next)
+        {
+            fast_head = fast_head->next->next;
+            prev_slow_head = slow_head;
+            slow_head = slow_head->next;
+        }
+
+        prev_slow_head->next = slow_head->next;
         return head;
     }
 };
