@@ -21,25 +21,25 @@ public:
         ListNode *head_tmp = head;
         int n = 0;
 
+        // count N
         while (head_tmp != nullptr)
         {
             head_tmp = head_tmp->next;
             n++;
         }
+
+        // return nullptr if only 1 element in linkedlist
+        if (n == 1)
+            return nullptr;
+
+        // get mid idx
         n = n / 2;
+
+        // find mid idx and remove it
         head_tmp = head;
-
-        cout << n << endl;
-
         while (n != 0 && --n > 0)
             head_tmp = head_tmp->next;
-
-        cout << n << endl;
-
-        if (head_tmp->next != nullptr)
-            head_tmp->next = head_tmp->next->next;
-        else
-            return nullptr;
+        head_tmp->next = head_tmp->next->next;
 
         return head;
     }
