@@ -17,6 +17,20 @@ class Solution
 public:
     int pairSum(ListNode *head)
     {
-        return 0;
+        vector<int> num;
+        int n;
+        int out = 0;
+
+        while (head)
+        {
+            num.push_back(head->val);
+            head = head->next;
+        }
+        n = num.size();
+        // print_vector(num);
+        for (int i = 0; i < n; i++)
+            out = max(out, num[i] + num[n - 1 - i]);
+
+        return out;
     }
 };
