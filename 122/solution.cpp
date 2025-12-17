@@ -10,28 +10,16 @@ public:
     vector<pair<int, int>> dp;
     int maxProfit(vector<int> &prices)
     {
-        int buy_state;
-        int sell_state;
-        int prev_buy;
-        int prev_sell;
-        const int n = prices.size();
-        vector<vector<int>> dp;
+        vector<pair<int, int>> dp;
 
         // init first
-        buy_state = -prices[0];
-        sell_state = 0;
-        dp.push_back({buy_state, sell_state});
+        dp.push_back(make_pair(-prices[0], 0));
 
-        for (int i = 1; i < n; i++)
-        {
-            prev_buy = dp[i - 1][0];
-            prev_sell = dp[i - 1][1];
+        for (int i = 1; i < prices.size(); i++)
+            dp.push_back(make_pair(
+                max(dp[i - 1].first, dp[i - 1].second - prices[i]),
+                max(dp[i - 1].second, dp[i - 1].first + prices[i])));
 
-            buy_state = max(prev_buy, prev_sell - prices[i]);
-            sell_state = max(prev_sell, prev_buy + prices[i]);
-            dp.push_back({buy_state, sell_state});
-        }
-
-        return dp[dp.size() - 1][1];
+        return dp[dp.size() - 1].second;
     }
 };
