@@ -20,6 +20,9 @@ public:
                 max(dp[i - 1].first, dp[i - 1].second - prices[i]),
                 max(dp[i - 1].second, dp[i - 1].first + prices[i])));
 
+        print_vector(prices);
+        print_vector_of_pairs(dp);
+
         return dp[dp.size() - 1].second;
     }
 };
