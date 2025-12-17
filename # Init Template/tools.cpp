@@ -163,3 +163,42 @@ void print_vector_of_pairs(const std::vector<std::pair<T1, T2>> &data)
     }
     std::cout << "]\n";
 }
+
+template <typename T>
+void print_vector_of_vectors(const std::vector<std::vector<T>> &data)
+{
+    if (data.empty())
+    {
+        std::cout << "[]\n";
+        return;
+    }
+
+    std::cout << "[\n";
+    for (size_t i = 0; i < data.size(); ++i)
+    {
+        const auto &inner_vec = data[i];
+
+        // Print the inner vector
+        std::cout << "  [";
+        for (size_t j = 0; j < inner_vec.size(); ++j)
+        {
+            std::cout << inner_vec[j];
+            if (j < inner_vec.size() - 1)
+            {
+                std::cout << ", ";
+            }
+        }
+        std::cout << "]";
+
+        // Formatting for the outer vector
+        if (i < data.size() - 1)
+        {
+            std::cout << ",\n";
+        }
+        else
+        {
+            std::cout << "\n";
+        }
+    }
+    std::cout << "]\n";
+}
