@@ -202,3 +202,23 @@ void print_vector_of_vectors(const std::vector<std::vector<T>> &data)
     }
     std::cout << "]\n";
 }
+
+template <typename T>
+void print3DVector(const std::vector<std::vector<std::vector<T>>> &vec, std::string name = "DP Table")
+{
+    std::cout << "Printing " << name << ":\n";
+    for (size_t i = 0; i < vec.size(); ++i)
+    {
+        std::cout << "Layer [" << i << "]\n";
+        for (size_t j = 0; j < vec[i].size(); ++j)
+        {
+            std::cout << "  Row " << j << ": ";
+            for (size_t k = 0; k < vec[i][j].size(); ++k)
+            {
+                std::cout << vec[i][j][k] << "\t"; // Tab for alignment
+            }
+            std::cout << "\n";
+        }
+        std::cout << std::string(20, '-') << "\n";
+    }
+}
