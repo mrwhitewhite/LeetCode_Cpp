@@ -11,11 +11,6 @@ public:
     {
         long long default_profit = 0;
         long long delta = 0;
-        vector<int> new_strat(k, 1);
-
-        // set new strat vector
-        for (int i = 0; i < k / 2; i++)
-            new_strat[i] = 0;
 
         // default profit
         for (int i = 0; i < prices.size(); i++)
@@ -29,7 +24,9 @@ public:
         for (int i = 0; i < k; i++)
         {
             delta_original += prices[i] * strategy[i];
-            delta_new += prices[i] * new_strat[i];
+
+            if (i >= k / 2)
+                delta_new += prices[i];
         }
         delta = max(delta, delta_new - delta_original);
 
