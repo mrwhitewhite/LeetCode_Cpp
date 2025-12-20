@@ -11,14 +11,16 @@ public:
     {
         int res = 0;
 
-        for (int col = 0; col < strs[0].size(); col++)
+        for (int row = 0; row < strs[0].size(); row++)
         {
-            vector<char> tmp = {};
-            for (int row = 0; row < strs.size(); row++)
-                tmp.push_back(strs[row][col]);
-
-            if (!is_sorted(tmp.begin(), tmp.end()))
-                res++;
+            for (int col = 1; col < strs.size(); col++)
+            {
+                if (strs[col - 1][row] > strs[col][row])
+                {
+                    res++;
+                    break;
+                }
+            }
         }
 
         return res;
