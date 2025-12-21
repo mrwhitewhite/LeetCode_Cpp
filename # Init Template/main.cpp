@@ -3,6 +3,8 @@
 int main()
 {
     Solution test_sol;
-    cout << test_sol.hello();
+
+    printn(test_sol.hello());
+
     return 0;
 }
