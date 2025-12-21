@@ -222,3 +222,15 @@ void print3DVector(const std::vector<std::vector<std::vector<T>>> &vec, std::str
         std::cout << std::string(20, '-') << "\n";
     }
 }
+
+template <typename T>
+void printn(T input)
+{
+    cout << input << endl;
+}
+
+template <typename T>
+void print(T input)
+{
+    cout << input;
+}
