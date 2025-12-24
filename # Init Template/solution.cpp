@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <numeric>
+#include <algorithm>
 #include "tools.cpp"
 using namespace std;
 
