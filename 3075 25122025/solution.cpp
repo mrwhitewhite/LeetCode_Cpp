@@ -15,7 +15,7 @@ public:
         sort(happiness.rbegin(), happiness.rend());
 
         for (int i = 0; i < k; i++)
-            res += happiness[i] - i < 0 ? 0 : happiness[i] - i;
+            res += max(happiness[i] - i, 0);
 
         return res;
     }
