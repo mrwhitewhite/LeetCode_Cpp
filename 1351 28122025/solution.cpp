@@ -12,14 +12,14 @@ public:
     int countNegatives(vector<vector<int>> &grid)
     {
         int res = 0;
+        int i;
+        const int n = grid[0].size();
 
         for (const vector<int> &v : grid)
         {
-            for (const int &i : v)
-            {
-                if (i < 0)
-                    res++;
-            }
+            i = n - 1;
+            while (i >= 0 && v[i--] < 0)
+                res++;
         }
         return res;
     }
